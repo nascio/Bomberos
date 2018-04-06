@@ -33,7 +33,7 @@
                       Header="Iniciar sesión" />-->
         </Menu>
 
-        <Grid Background="Red">
+        <Grid Background="White">
 
             <Border x:Name="brdBienvenida"
                     Background="#99000000"

@@ -48,5 +48,21 @@ namespace Bomberos {
             var s = this.DataContext as BLL.Modelo1;
             var n = s;
         }
+
+        private void Button_Click (Object sender, RoutedEventArgs e) {
+            if (!this.modelo.Aceptar ( )) {
+                MessageBox.Show ("Hay errores");
+                return;
+            }
+
+
+            var parent = this.Parent as Grid;
+            parent.Children.Clear ( );
+            parent.Children.Add (new EnfermedadComunControl ( ) {
+                VerticalAlignment = VerticalAlignment.Stretch,
+                HorizontalAlignment = HorizontalAlignment.Stretch
+            });
+
+        }
     }
 }

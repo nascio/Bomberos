@@ -73,7 +73,13 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <Border Grid.Row="1" Background="#F2F2F2" />
+            <Border Grid.Row="1"
+                    Background="#FFFF3131"
+                    CornerRadius="8">
+                <Border.Effect>
+                    <BlurEffect />
+                </Border.Effect>
+            </Border>
             <TextBlock x:Name="lblUsuario"
                        Grid.Row="1"
                        Margin="0,0,50,0"

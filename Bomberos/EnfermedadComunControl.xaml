@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Bomberos"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             d:DesignHeight="1949"
+             d:DesignHeight="1030"
              d:DesignWidth="840"
              Background="White"
              mc:Ignorable="d">
@@ -76,46 +76,47 @@
         <bll:Modelo1 />
     </UserControl.DataContext>
 
-    <ScrollViewer Padding="20">
-        <!--  Background="#33ff0000"  -->
-        <Grid>
+
+
+    <!--  Background="#33ff0000"  -->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="5" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Top">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="5" />
-                <RowDefinition />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
 
+            <Image Grid.RowSpan="2"
+                   Width="100"
+                   MouseEnter="Image_MouseEnter"
+                   Source="Resources/logo-completo-png.png" />
+            <TextBlock Grid.Column="2"
+                       FontSize="24"
+                       FontWeight="Bold"
+                       Text="BENEMERITO CUERPO VOLUNTARIO DE BOMBEROS DE GUATEMALA"
+                       TextAlignment="Center"
+                       TextWrapping="Wrap" />
+            <TextBlock Grid.Row="1"
+                       Grid.Column="2"
+                       FontSize="24"
+                       TextAlignment="Center">
+                REPORTE DE AMBULANCIA<LineBreak />
+                (Servicios enfermedad común)</TextBlock>
+        </Grid>
+        <ScrollViewer Grid.Row="2" Padding="20">
 
-
-
-            <Grid HorizontalAlignment="Center" VerticalAlignment="Top">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="5" />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-
-                <Image Grid.RowSpan="2"
-                       Width="100"
-                       MouseEnter="Image_MouseEnter"
-                       Source="Resources/logo-completo-png.png" />
-                <TextBlock Grid.Column="2"
-                           FontSize="24"
-                           FontWeight="Bold"
-                           Text="BENEMERITO CUERPO VOLUNTARIO DE BOMBEROS DE GUATEMALA"
-                           TextAlignment="Center"
-                           TextWrapping="Wrap" />
-                <TextBlock Grid.Row="1"
-                           Grid.Column="2"
-                           FontSize="24"
-                           TextAlignment="Center">
-                    REPORTE DE AMBULANCIA<LineBreak />
-                    (Servicios enfermedad común)</TextBlock>
-            </Grid>
             <Grid Grid.Row="2" TextElement.FontSize="15">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -161,7 +162,8 @@
                 <TextBlock Padding="0,5"
                            VerticalAlignment="Center"
                            LineHeight="9"
-                           LineStackingStrategy="BlockLineHeight">
+                           LineStackingStrategy="BlockLineHeight"
+                           TextAlignment="Right">
                     Fecha:<LineBreak /><Span FontSize="10">(dd/mm/yyyy)</Span>
                 </TextBlock>
                 <Border Grid.Column="2"
@@ -172,18 +174,20 @@
                 <DatePicker x:Name="dpkrFecha"
                             Grid.Column="2"
                             Height="26"
-                            Margin="0,2"
+                            Margin="0,2,366,2"
                             VerticalAlignment="Center"
                             BorderThickness="0"
                             SelectedDate="{Binding Fecha, StringFormat=dd - mm - yyyy}" />
 
-                <Grid Grid.Row="3" Grid.ColumnSpan="3">
+                <Grid Grid.Row="3"
+                      Grid.ColumnSpan="3"
+                      HorizontalAlignment="Center">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="5" />
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="50" />
-                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="85" />
                         <ColumnDefinition Width="5" />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
@@ -191,9 +195,14 @@
                     <TextBlock Text="Hora:" />
                     <TextBox Grid.Column="2"
                              Width="150"
-                             Text="{Binding HoraSalida, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=\{0:hh\\:mm\}}" />
-                    <TextBlock Grid.Column="4" Text="Salida de:" />
-                    <TextBox Grid.Column="6" Text="{Binding LugarSalida, Mode=TwoWay}" />
+                             Text="{Binding HoraSalida, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=\{0:hh\\:mm\}}"
+                             TextAlignment="Center" />
+                    <TextBlock Grid.Column="4"
+                               Text="Salida de:"
+                               TextAlignment="Right" />
+                    <TextBox Grid.Column="6"
+                             MinWidth="300"
+                             Text="{Binding LugarSalida, Mode=TwoWay}" />
                 </Grid>
                 <Grid Grid.Row="2" Grid.ColumnSpan="3">
                     <Grid.ColumnDefinitions>
@@ -225,7 +234,9 @@
                             BorderThickness="0,2,0,0" />
                     <TextBlock Grid.Column="1" Text="Informacion de entrada" />
                 </Grid>
-                <Grid Grid.Row="6" Grid.ColumnSpan="3">
+                <Grid Grid.Row="6"
+                      Grid.ColumnSpan="3"
+                      HorizontalAlignment="Center">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="5" />
@@ -239,12 +250,17 @@
                     <TextBlock Text="Hora:" />
                     <TextBox Grid.Column="2"
                              Width="150"
-                             Text="{Binding HoraSalida, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=\{0:hh\\:mm\}}" />
+                             Text="{Binding HoraEntrada, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=\{0:hh\\:mm\}}"
+                             TextAlignment="Center" />
                     <TextBlock Grid.Column="4" Text="Entrada de:" />
-                    <TextBox Grid.Column="6" Text="{Binding LugarEntrada, Mode=TwoWay}" />
+                    <TextBox Grid.Column="6"
+                             MinWidth="300"
+                             Text="{Binding LugarEntrada, Mode=TwoWay}" />
                 </Grid>
 
-                <TextBlock Grid.Row="8" Text="Dirección:" />
+                <TextBlock Grid.Row="8"
+                           Text="Dirección:"
+                           TextAlignment="Right" />
                 <TextBox Grid.Row="8"
                          Grid.Column="2"
                          Text="{Binding Path=Direccion, Mode=TwoWay}" />
@@ -275,7 +291,7 @@
                             Grid.ColumnSpan="3"
                             VerticalAlignment="Top">
 
-                    <Grid Margin="0,0,0,5">
+                    <Grid Margin="20,0,20,5">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" />
                             <ColumnDefinition Width="5" />
@@ -298,7 +314,7 @@
                     <ItemsControl ItemsSource="{Binding Solicitantes}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Grid Margin="0,0,0,5">
+                                <Grid Margin="25,0,20,5">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="auto" />
                                         <ColumnDefinition Width="5" />
@@ -392,34 +408,39 @@
 
                         <Grid Grid.Row="2"
                               Grid.ColumnSpan="11"
+                              HorizontalAlignment="Center"
                               Background="Transparent">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto" />
                                 <ColumnDefinition Width="5" />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="Causa:" />
+                            <TextBlock Text="            Causa:" />
                             <TextBox Grid.Column="2"
+                                     Width="400"
                                      HorizontalAlignment="Stretch"
                                      Text="{Binding PacientePrincipal.Causa, Mode=TwoWay}" />
                         </Grid>
 
                         <Grid Grid.Row="4"
                               Grid.ColumnSpan="11"
+                              HorizontalAlignment="Center"
                               Background="Transparent">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto" />
                                 <ColumnDefinition Width="5" />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="Domicilio:" />
+                            <TextBlock Text="       Domicilio:" />
                             <TextBox Grid.Column="2"
+                                     Width="400"
                                      HorizontalAlignment="Stretch"
                                      Text="{Binding PacientePrincipal.Domicilio, Mode=TwoWay}" />
                         </Grid>
 
                         <Grid Grid.Row="6"
                               Grid.ColumnSpan="11"
+                              HorizontalAlignment="Center"
                               Background="Transparent">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto" />
@@ -428,6 +449,7 @@
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="Acompañante:" />
                             <TextBox Grid.Column="2"
+                                     Width="400"
                                      HorizontalAlignment="Stretch"
                                      Text="{Binding PacientePrincipal.Acompaniante, Mode=TwoWay}" />
                         </Grid>
@@ -486,31 +508,39 @@
                                             Content="-" />
 
 
-                                    <Grid Grid.Row="2" Grid.ColumnSpan="11">
+                                    <Grid Grid.Row="2"
+                                          Grid.ColumnSpan="11"
+                                          HorizontalAlignment="Center">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="auto" />
                                             <ColumnDefinition Width="5" />
                                             <ColumnDefinition />
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock Text="Causa:" />
+                                        <TextBlock Text="            Causa:" />
                                         <TextBox Grid.Column="2"
+                                                 Width="400"
                                                  HorizontalAlignment="Stretch"
                                                  Text="{Binding Causa, Mode=TwoWay}" />
                                     </Grid>
 
-                                    <Grid Grid.Row="4" Grid.ColumnSpan="11">
+                                    <Grid Grid.Row="4"
+                                          Grid.ColumnSpan="11"
+                                          HorizontalAlignment="Center">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="auto" />
                                             <ColumnDefinition Width="5" />
                                             <ColumnDefinition />
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock Text="Domicilio:" />
+                                        <TextBlock Text="       Domicilio:" />
                                         <TextBox Grid.Column="2"
+                                                 Width="400"
                                                  HorizontalAlignment="Stretch"
                                                  Text="{Binding Domicilio, Mode=TwoWay}" />
                                     </Grid>
 
-                                    <Grid Grid.Row="6" Grid.ColumnSpan="11">
+                                    <Grid Grid.Row="6"
+                                          Grid.ColumnSpan="11"
+                                          HorizontalAlignment="Center">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="auto" />
                                             <ColumnDefinition Width="5" />
@@ -518,6 +548,7 @@
                                         </Grid.ColumnDefinitions>
                                         <TextBlock Text="Acompañante:" />
                                         <TextBox Grid.Column="2"
+                                                 Width="400"
                                                  HorizontalAlignment="Stretch"
                                                  Text="{Binding Acompaniante, Mode=TwoWay}" />
                                     </Grid>
@@ -546,7 +577,7 @@
                             Grid.ColumnSpan="3"
                             VerticalAlignment="Top">
 
-                    <Grid>
+                    <Grid Margin="0,0,0,5">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" />
                             <ColumnDefinition Width="5" />
@@ -582,7 +613,7 @@
                     <ItemsControl ItemsSource="{Binding AsignacionesUnidades}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Grid>
+                                <Grid Margin="0,0,0,5">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="auto" />
                                         <ColumnDefinition Width="5" />
@@ -637,10 +668,9 @@
                 </Grid>
                 <StackPanel Grid.Row="20"
                             Grid.ColumnSpan="3"
-                            VerticalAlignment="Top"
-                            Background="#FFF59E9E">
+                            VerticalAlignment="Top">
 
-                    <Grid>
+                    <Grid Margin="0,0,0,5">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" />
                             <ColumnDefinition Width="5" />
@@ -710,7 +740,7 @@
                     <ItemsControl ItemsSource="{Binding PersonalDestacado}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Grid>
+                                <Grid Margin="0,0,0,5">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="auto" />
                                         <ColumnDefinition Width="5" />
@@ -807,20 +837,28 @@
                 <TextBlock Grid.Row="25" Text="Formulado por:" />
                 <TextBlock Grid.Row="27" Text="Piloto:" />
                 <TextBlock Grid.Row="29" Text="Jefe de servicios:" />
-                <TextBlock Grid.Row="31" Text="Secretaria:" />
+                <TextBlock Grid.Row="31" Text="Secretario(a):" />
 
                 <ComboBox Grid.Row="25"
                           Grid.Column="2"
-                          ItemTemplate="{DynamicResource PlantillaBomberoKey}" />
+                          ItemTemplate="{DynamicResource PlantillaBomberoKey}"
+                          ItemsSource="{Binding Bomberos}"
+                          SelectedItem="{Binding FormuladoPor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 <ComboBox Grid.Row="27"
                           Grid.Column="2"
-                          ItemTemplate="{DynamicResource PlantillaBomberoKey}" />
+                          ItemTemplate="{DynamicResource PlantillaBomberoKey}"
+                          ItemsSource="{Binding Bomberos}"
+                          SelectedItem="{Binding Piloto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 <ComboBox Grid.Row="29"
                           Grid.Column="2"
-                          ItemTemplate="{DynamicResource PlantillaBomberoKey}" />
+                          ItemTemplate="{DynamicResource PlantillaBomberoKey}"
+                          ItemsSource="{Binding Bomberos}"
+                          SelectedItem="{Binding JefeServicios, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 <ComboBox Grid.Row="31"
                           Grid.Column="2"
-                          ItemTemplate="{DynamicResource PlantillaBomberoKey}" />
+                          ItemTemplate="{DynamicResource PlantillaBomberoKey}"
+                          ItemsSource="{Binding Bomberos}"
+                          SelectedItem="{Binding Secretario, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
 
 
@@ -829,6 +867,15 @@
 
 
             </Grid>
-        </Grid>
-    </ScrollViewer>
+        </ScrollViewer>
+        <Button Width="84"
+                Height="33"
+                Margin="734,68,22,47"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Click="Button_Click"
+                Command="{Binding AgregarCMD}"
+                Content="Guardar" />
+
+    </Grid>
 </UserControl>
