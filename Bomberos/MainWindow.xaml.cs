@@ -67,7 +67,7 @@ namespace Bomberos {
         public MainWindow ( ) {
             this.inicioSesion = new menuContext ( ) {
                 Nombre = "Iniciar sesión",
-                Click = new BLL.Comando (( ) => mnuitIniciarSesion_Click (null, null))
+                Click = new BLL.Comando (( ) => mnuitIniciarSesion_Click())
             };
             this.restos = new List<menuContext> ( );
             this.menugenial = new ObservableCollection<menuContext> ( );
@@ -82,8 +82,15 @@ namespace Bomberos {
                 Nombre = "Cerrar sesión",
                 Click = new BLL.Comando (( ) => cerrarSesion_Click ( ))
             });
+            this.restos.Add(new menuContext()
+            {
+                Quitar = false,
+                Nombre = "Crear Informes",
+                Click = new BLL.Comando(() => crearInformes())
+            });
 
-            InitializeComponent ( );
+
+            InitializeComponent( );
 
 
             this.menugenial.Add (this.inicioSesion);
@@ -101,6 +108,20 @@ namespace Bomberos {
             this.contenido.Children.Add (n);
 
         }
+        private void crearInformes()
+        {
+            this.contenido.Children.Clear();
+
+            var n = new Informes()
+            {
+                VerticalAlignment = VerticalAlignment.Stretch,
+                HorizontalAlignment = HorizontalAlignment.Stretch
+            };
+
+            this.contenido.Children.Add(n);
+
+        }
+
 
         private void mnuitIniciarSesion_Click (Object sender, RoutedEventArgs e) {
             var n = new IniciarSesionWindow ( );
