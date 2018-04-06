@@ -9,4 +9,10 @@ namespace Bomberos.BLL.Excepciones {
         public NoSePudoIngresarException (String message) : base ( ) {
         }
     }
+
+
+    public sealed class AlgoMasException : ApplicationException {
+        public AlgoMasException ( ) : base ( ) {
+        }
+    }
 }
